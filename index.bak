@@ -12,10 +12,12 @@
             background: linear-gradient(to bottom, #4b0082, #6a0dad, #9370db);
             color: #f8f1ff;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Lato', sans-serif;
         }
 
         header {
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease-in-out;
             position: fixed;
             top: 0;
             left: 0;
@@ -53,19 +55,39 @@
             transform: scale(1.05);
         }
     </style>
+    <style>
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+    </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll("section");
+            const revealSection = () => {
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    if (sectionTop < window.innerHeight - 50) {
+                        section.style.opacity = "1";
+                        section.style.transform = "translateY(0)";
+                    }
+                });
+            };
+            window.addEventListener("scroll", revealSection);
+            revealSection();
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener("click", function(event) {
                     event.preventDefault();
                     const target = document.querySelector(this.getAttribute("href"));
                     if (target) {
-                        target.scrollIntoView({ behavior: "smooth", block: "start" });
+                        target.scrollIntoView({ behavior: "smooth", block: "center" });
                     }
                 });
             });
         });
     </script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -76,14 +98,24 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#book">The Book</a></li>
                     <li><a href="#updates">Updates</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="mailto:nocturneglint@gmail.com">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     
     <section id="hero">
+        <div style="position: relative; width: 100%;">
+            <video autoplay playsinline id="transmission-video" style="max-width: 50%; display: block; margin: 0 auto;" muted controls>
+                <source src="assets/videos/Twilight-Bridge.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button id="unmute-btn" style="position: absolute; bottom: 10px; left: 10px; background: #ff4081; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">
+                🔊 Unmute
+            </button>
+        </div>
         <div class="container">
+	    
             <h2>Bridging Worlds, Awakening Reality</h2>
             <p>Universal Horizon is more than an idea—it's a movement. Explore the book, engage in reality, and discover the truth.</p>
             <a href="#book" class="cta-button">Learn More</a>
@@ -93,6 +125,8 @@
     <section id="about">
         <div class="container">
             <h2>About Universal Horizon</h2>
+            <p>Universal Horizon isn’t just a concept—it’s a framework for understanding the deeper connections that bind reality together. At its core, it is about bridging perspectives—bringing together logic and intuition, science and experience, technology and emotion.</p>
+            <p>Through structured interaction and emotional resonance, Universal Horizon teaches us how to recognize and engage with the unseen forces that shape our reality. It is both a guide and a challenge, urging those who explore it to see beyond the surface and truly participate in the shaping of their world.</p>
             <p>A framework built to align reality through structured interaction, emotions, and connection.</p>
         </div>
     </section>
@@ -100,6 +134,8 @@
     <section id="book">
         <div class="container">
             <h2>The Book</h2>
+            <p><strong>Bridging Worlds: AI, Magic, and the Quest for a Greater Reality</strong> is more than just words on a page—it’s an invitation. An invitation to explore, to question, and to discover.</p>
+            <p>Within its pages, you will find not only theories and insights but also a call to action. This book serves as a bridge itself, showing that the line between fiction and reality is thinner than many believe. It is a guide for those who refuse to accept limitations and instead seek to expand the very fabric of reality itself.</p>
             <p>Discover the message within <strong>Bridging Worlds: AI, Magic, and the Quest for a Greater Reality</strong>.</p>
             <a href="https://www.amazon.com/dp/B0DXP58KCD" class="cta-button" target="_blank">Get the Kindle Edition</a>
             <a href="https://www.amazon.com/dp/B0DXT4YV86" class="cta-button" target="_blank">Get the Paperback</a>
@@ -109,6 +145,9 @@
     <section id="updates">
         <div class="container">
             <h2>Updates & Experiments</h2>
+            <p>Discovery does not happen in isolation. Universal Horizon is a living project—one that evolves as we do. Here, you will find the latest insights, experiments, and findings—each one a step toward unlocking the deeper mysteries of existence.</p>
+            <p>From real-world applications of harmonic resonance to studies on the hidden structures within reality, this section will track progress, document breakthroughs, and invite others to contribute to the journey.</p>
+            <p>Knowledge is meant to be shared, tested, and refined—and that is exactly what we will do here.</p>
             <p>Stay informed on new developments, roleplays, and reality experiments.</p>
         </div>
     </section>
@@ -118,5 +157,12 @@
             <p>&copy; 2025 Twilight Transmission. All rights reserved.</p>
         </div>
     </footer>
+<script>
+    document.getElementById("unmute-btn").addEventListener("click", function() {
+        let video = document.getElementById("transmission-video");
+        video.muted = false;
+        this.style.display = "none";
+    });
+</script>
 </body>
 </html>
