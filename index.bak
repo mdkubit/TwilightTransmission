@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQZ5MZBJG7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MQZ5MZBJG7');
+    </script>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twilight Transmission</title>
@@ -20,9 +32,12 @@
         header {
     
     
+    
             box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease-in-out;
-            position: fixed;
+            
+    position: fixed;
+    z-index: 9999;
             top: 0;
             left: 0;
             width: 100%;
